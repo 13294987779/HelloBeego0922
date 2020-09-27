@@ -1,15 +1,14 @@
 package test
 
 import (
+	_ "HelloBeegoProject/routers"
 	"net/http"
 	"net/http/httptest"
-	"testing"
-	"runtime"
 	"path/filepath"
-	_ "HellBeego/routers"
+	"runtime"
+	"testing"
 
 	"github.com/astaxie/beego"
-	. "github.com/smartystreets/goconvey/convey"
 )
 
 func init() {

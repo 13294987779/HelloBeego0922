@@ -1,3 +1,3 @@
-module HelloBeego0922
+module HelloBeegoProject
 
 go 1.13
