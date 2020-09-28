@@ -6,5 +6,8 @@ import (
 )
 
 func init() {
+	//用户注册
+
+
     beego.Router("/index", &controllers.MainController{})
 }
