@@ -3,13 +3,19 @@ package main
 import (
 	"HelloBeegoProject/db_mysql"
 	_ "HelloBeegoProject/routers"
-	"database/sql"
-	"fmt"
 	"github.com/astaxie/beego"
 )
 
 func main() {
-	config := beego.AppConfig//定义config变量，接收并赋值为全局变量
+	//1、连接数据库
+	db_mysql.Connect()
+
+	//2、其他配置
+
+	//3、启动应用
+	beego.Run()//代码简洁
+}
+	/*config := beego.AppConfig//定义config变量，接收并赋值为全局变量
 	appname := config.String("appname")
 	fmt.Println("项目名为",appname)
 	http,err:=config.Int("httpport")
@@ -35,7 +41,7 @@ func main() {
 	fmt.Println(db)
 	beego.Run()
 
+*/
 
-}
 
 

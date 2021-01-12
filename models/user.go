@@ -1,10 +1,8 @@
 package models
 
-import "net/mail"
-
 type User struct {
 	Name string `json:"name"`
-	Birthday
-	Address
-	password
+	Birthday string `json:"birthday"`
+	Address string `json:"address"`
+	Password string `json:"password"`
 }

@@ -40,35 +40,30 @@ func (c *MainController) Get() {
 /**
 *该post方法是处理post
  */
-func (c *MainController)Post()  {
-	//该post方法会处理post类型请求时调用的方法
-	//fmt.Println("post类型的请求")
-	//username :=  c.Ctx.Request.FormValue("username")
-	//fmt.Println("用户名为",username)
-	//pwd :=  c.Ctx.Request.FormValue("pwd")
-	//fmt.Println("密码为",pwd)
-	body := c.Ctx.Request.Body
-	dataBytes,err :=  ioutil.ReadAll(body)
+func (c *MainController) Post(){
+
+	//1、解析前端提交的json格式的数据
+	var person models.Person
+	dataBytes, err :=ioutil.ReadAll(c.Ctx.Request.Body)
 	if err != nil {
-		c.Ctx.WriteString("数据接收失败")
+		c.Ctx.WriteString("数据接收错误，请重试")
 		return
 	}
-	//json解析
-	var persion models.Man
-	json.Unmarshal(dataBytes,persion)
-	//fmt.Println("用户名",persion.Name,"年龄",persion.Age,"性别",persion.Sex)
+	err = json.Unmarshal(dataBytes,&person)
+	if err != nil {
+		c.Ctx.WriteString("数据解析失败，请重试")
+		return
+	}
+	fmt.Println("姓名:",person.Name)
+	fmt.Println("年龄：",person.Age)
+	fmt.Println("性别:",person.Sex)
+	c.Ctx.WriteString("数据解析成功")
+}
 
-
-	//条件判断
-	//if username != "admin" || pwd != "123456"{
-	//	//失败页面
-	//	c.Ctx.ResponseWriter.Write([]byte("对不起，登录失败"))
-	//	return
-	//}
-	//c.Ctx.ResponseWriter.Write([]byte("登录成功"))
-	c.Data["Website"] = "www.baidu.com"
-	c.Data["Email"] = "971371682@qq.com"
-	c.TplName = "index.tpl"
+/**
+ * 该方法用于处理delete请求
+ */
+func (c *MainController) Delete(){
 
 }
 
